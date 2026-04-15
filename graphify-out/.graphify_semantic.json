@@ -1,0 +1,288 @@
+{
+  "nodes": [
+    {
+      "id": "robots_crawl_policy",
+      "label": "Robots.txt Crawl Policy",
+      "file_type": "document",
+      "source_file": "public/robots.txt",
+      "source_location": "line 1-2",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "robots_all_agents_allowed",
+      "label": "All User Agents Allowed (No Disallow Rules)",
+      "file_type": "document",
+      "source_file": "public/robots.txt",
+      "source_location": "line 1-2",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_laravel_logo",
+      "label": "Laravel Logo Favicon (SVG)",
+      "file_type": "image",
+      "source_file": "public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "laravel_framework",
+      "label": "Laravel Framework",
+      "file_type": "document",
+      "source_file": "public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "apple_touch_icon_laravel",
+      "label": "Apple Touch Icon - Laravel Logo",
+      "file_type": "image",
+      "source_file": "public/apple-touch-icon.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "brand_orgadento",
+      "label": "OrgaDento - Organic Dental Care Brand",
+      "file_type": "image",
+      "source_file": "public/images/logo.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "brand_organic_dental_care",
+      "label": "Organic Dental Care Product Category",
+      "file_type": "image",
+      "source_file": "public/images/logo.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "background_dental_cartoon",
+      "label": "Dental Product Background Image - Cartoon Tooth Characters",
+      "file_type": "image",
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "dental_ingredients_miswak",
+      "label": "Dental Ingredients: Miswak/Clove/Mint/Salt",
+      "file_type": "image",
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "product_orgadento_jar",
+      "label": "OrgaDento Product Jar (visible in background)",
+      "file_type": "image",
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "app_medgicpk",
+      "label": "MedgicPK Application",
+      "file_type": "document",
+      "source_file": "public/robots.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "robots_crawl_policy",
+      "target": "robots_all_agents_allowed",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/robots.txt",
+      "source_location": "line 1-2",
+      "weight": 1.0
+    },
+    {
+      "source": "app_medgicpk",
+      "target": "robots_crawl_policy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/robots.txt",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_laravel_logo",
+      "target": "laravel_framework",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "apple_touch_icon_laravel",
+      "target": "laravel_framework",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/apple-touch-icon.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "apple_touch_icon_laravel",
+      "target": "favicon_laravel_logo",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/apple-touch-icon.png",
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "app_medgicpk",
+      "target": "laravel_framework",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/favicon.svg",
+      "source_location": null,
+      "weight": 0.9
+    },
+    {
+      "source": "brand_orgadento",
+      "target": "brand_organic_dental_care",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/images/logo.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "background_dental_cartoon",
+      "target": "dental_ingredients_miswak",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "background_dental_cartoon",
+      "target": "product_orgadento_jar",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "product_orgadento_jar",
+      "target": "brand_orgadento",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "dental_ingredients_miswak",
+      "target": "brand_organic_dental_care",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "app_medgicpk",
+      "target": "brand_orgadento",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/images/logo.png",
+      "source_location": null,
+      "weight": 0.75
+    },
+    {
+      "source": "background_dental_cartoon",
+      "target": "brand_orgadento",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/images/background.jpeg",
+      "source_location": null,
+      "weight": 0.8
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "public_assets_laravel_identity",
+      "label": "Public Assets Establishing Laravel Identity",
+      "nodes": [
+        "favicon_laravel_logo",
+        "apple_touch_icon_laravel",
+        "laravel_framework"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/favicon.svg"
+    },
+    {
+      "id": "orgadento_brand_assets",
+      "label": "OrgaDento Brand Visual Assets",
+      "nodes": [
+        "brand_orgadento",
+        "background_dental_cartoon",
+        "product_orgadento_jar",
+        "brand_organic_dental_care"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/images/logo.png"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
