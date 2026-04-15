@@ -19,6 +19,7 @@ trait OrderValidationRules
             'name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'regex:/^\+?[0-9]{10,15}$/'],
             'delivery_address' => ['required', 'string', 'max:1000'],
+            'city' => ['required', 'string', 'max:100'],
             'quantity' => ['required', 'integer', 'min:1', 'max:20'],
             'website' => ['nullable', 'string', 'max:0'],
         ];
@@ -53,6 +54,7 @@ trait OrderValidationRules
             'phone_number.required' => 'Phone number dena zaroori hai.',
             'phone_number.regex' => 'Phone number sirf digits mein sahi format ke saath likhein.',
             'delivery_address.required' => 'Delivery address dena zaroori hai.',
+            'city.required' => 'City ka naam dena zaroori hai.',
             'quantity.required' => 'Quantity select karna zaroori hai.',
             'quantity.min' => 'Quantity kam az kam 1 honi chahiye.',
             'quantity.max' => 'Quantity aik order mein 20 se zyada nahi ho sakti.',

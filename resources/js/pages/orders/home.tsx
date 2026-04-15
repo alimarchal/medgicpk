@@ -1,5 +1,5 @@
-import { Form, Head } from '@inertiajs/react';
-import PublicOrderController from '@/actions/App/Http/Controllers/PublicOrderController';
+import { Head, useForm } from '@inertiajs/react';
+import { store } from '@/actions/App/Http/Controllers/PublicOrderController';
 import AppLogoIcon from '@/components/app-logo-icon';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
@@ -22,10 +22,27 @@ type Props = {
         subtitle: string;
         ingredients: string[];
         whatsappNumber: string;
+        deliveryPrice: number;
     };
 };
 
 export default function OrderHome({ product }: Props) {
+    const { data, setData, processing, errors, submit } = useForm({
+        name: '',
+        phone_number: '',
+        delivery_address: '',
+        city: '',
+        quantity: 1,
+        website: '',
+    });
+
+    const totalAmount = data.quantity * product.deliveryPrice;
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        submit('post', store().url);
+    }
+
     return (
         <>
             <Head title="Order Now" />
@@ -46,7 +63,7 @@ export default function OrderHome({ product }: Props) {
                             <div className="mx-auto inline-flex items-center justify-center rounded-2xl bg-white p-3">
                                 <AppLogoIcon className="h-24 w-auto object-contain" />
                             </div>
-                           
+
                             <CardTitle className="text-2xl leading-tight md:text-[2rem]">
                                 {product.name}
                             </CardTitle>
@@ -54,9 +71,6 @@ export default function OrderHome({ product }: Props) {
                                 <span className="block text-base font-medium text-foreground">
                                     {product.subtitle}
                                 </span>
-                                {/* <span className="block">
-                                    Apni details fill karein. Order save hone ke baad WhatsApp automatically open ho jayega.
-                                </span> */}
                             </CardDescription>
                             <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
                                 {product.ingredients.map((ingredient) => (
@@ -69,87 +83,119 @@ export default function OrderHome({ product }: Props) {
                                     </Badge>
                                 ))}
                             </div>
-                           
                         </CardHeader>
 
                         <CardContent className="px-10 py-2">
-                            <Form
-                                {...PublicOrderController.store.form()}
-                                className="flex flex-col gap-5"
-                            >
-                                {({ processing, errors }) => (
-                                    <>
-                                        <input
-                                            type="text"
-                                            name="website"
-                                            tabIndex={-1}
-                                            autoComplete="off"
-                                            className="absolute -left-[9999px] top-auto h-px w-px opacity-0"
-                                            aria-hidden="true"
-                                        />
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                                <input
+                                    type="text"
+                                    name="website"
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    className="absolute -left-2499.75 top-auto h-px w-px opacity-0"
+                                    aria-hidden="true"
+                                    value={data.website}
+                                    onChange={(e) => setData('website', e.target.value)}
+                                />
 
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="name">Name</Label>
-                                            <Input
-                                                id="name"
-                                                name="name"
-                                                placeholder="Your full name"
-                                                required
-                                                autoComplete="name"
-                                                autoFocus
-                                            />
-                                            <InputError message={errors.name} />
-                                        </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="name">Name</Label>
+                                    <Input
+                                        id="name"
+                                        name="name"
+                                        placeholder="Your full name"
+                                        required
+                                        autoComplete="name"
+                                        autoFocus
+                                        value={data.name}
+                                        onChange={(e) => setData('name', e.target.value)}
+                                    />
+                                    <InputError message={errors.name} />
+                                </div>
 
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="phone_number">Phone no</Label>
-                                            <Input
-                                                id="phone_number"
-                                                name="phone_number"
-                                                type="tel"
-                                                placeholder="03XXXXXXXXX"
-                                                required
-                                                autoComplete="tel"
-                                            />
-                                            <InputError message={errors.phone_number} />
-                                        </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="phone_number">Phone no</Label>
+                                    <Input
+                                        id="phone_number"
+                                        name="phone_number"
+                                        type="tel"
+                                        placeholder="03XXXXXXXXX"
+                                        required
+                                        autoComplete="tel"
+                                        value={data.phone_number}
+                                        onChange={(e) => setData('phone_number', e.target.value)}
+                                    />
+                                    <InputError message={errors.phone_number} />
+                                </div>
 
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="delivery_address">Delivery address</Label>
-                                            <Textarea
-                                                id="delivery_address"
-                                                name="delivery_address"
-                                                placeholder="House no, street, area, city"
-                                                required
-                                            />
-                                            <InputError message={errors.delivery_address} />
-                                        </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="city">City</Label>
+                                    <Input
+                                        id="city"
+                                        name="city"
+                                        placeholder="e.g. Lahore, Karachi, Islamabad"
+                                        required
+                                        autoComplete="address-level2"
+                                        value={data.city}
+                                        onChange={(e) => setData('city', e.target.value)}
+                                    />
+                                    <InputError message={errors.city} />
+                                </div>
 
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="quantity">Quantity</Label>
-                                            <Input
-                                                id="quantity"
-                                                name="quantity"
-                                                type="number"
-                                                min={1}
-                                                max={20}
-                                                defaultValue={1}
-                                                required
-                                            />
-                                            <InputError message={errors.quantity} />
-                                        </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="delivery_address">Delivery address</Label>
+                                    <Textarea
+                                        id="delivery_address"
+                                        name="delivery_address"
+                                        placeholder="House no, street, area"
+                                        required
+                                        value={data.delivery_address}
+                                        onChange={(e) => setData('delivery_address', e.target.value)}
+                                    />
+                                    <InputError message={errors.delivery_address} />
+                                </div>
 
-                                        <Button
-                                            type="submit"
-                                            className="mt-2 h-11 w-full text-base"
-                                            disabled={processing}
-                                        >
-                                            {processing && <Spinner />}
-                                            Place Order
-                                        </Button>
-                                    </>
-                                )}
-                            </Form>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="quantity">Quantity</Label>
+                                    <Input
+                                        id="quantity"
+                                        name="quantity"
+                                        type="number"
+                                        min={1}
+                                        max={20}
+                                        required
+                                        value={data.quantity}
+                                        onChange={(e) =>
+                                            setData('quantity', Math.max(1, parseInt(e.target.value) || 1))
+                                        }
+                                    />
+                                    <InputError message={errors.quantity} />
+                                </div>
+
+                                <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3">
+                                    <div className="flex items-center justify-between text-sm text-emerald-800">
+                                        <span>
+                                            Rs. {product.deliveryPrice} × {data.quantity}{' '}
+                                            {data.quantity === 1 ? 'bottle' : 'bottles'}
+                                        </span>
+                                        <span className="text-base font-bold">
+                                            Rs. {totalAmount.toLocaleString()}
+                                        </span>
+                                    </div>
+                                    <p className="mt-1 text-center text-xs text-emerald-700">
+                                        Inclusive of all delivery charges
+                                    </p>
+                                </div>
+
+                                <Button
+                                    type="submit"
+                                    className="mt-2 h-11 w-full text-base"
+                                    disabled={processing}
+                                >
+                                    {processing && <Spinner />}
+                                    Place Order
+                                </Button>
+                            </form>
                         </CardContent>
                     </Card>
                 </div>

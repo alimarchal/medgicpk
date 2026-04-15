@@ -30,6 +30,7 @@ class Order extends Model
         'name',
         'phone_number',
         'delivery_address',
+        'city',
         'quantity',
         'product_name',
         'status',

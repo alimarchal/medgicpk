@@ -41,6 +41,7 @@ class StoreOrderRequest extends FormRequest
             'name' => trim((string) $this->input('name')),
             'phone_number' => preg_replace('/\D+/', '', (string) $this->input('phone_number')),
             'delivery_address' => trim((string) $this->input('delivery_address')),
+            'city' => trim((string) $this->input('city')),
         ]);
     }
 }
