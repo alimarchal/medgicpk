@@ -26,6 +26,15 @@ type Props = {
     };
 };
 
+function RequiredLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
+    return (
+        <Label htmlFor={htmlFor}>
+            {children}
+            <span className="ml-0.5 text-red-500" aria-hidden="true">*</span>
+        </Label>
+    );
+}
+
 export default function OrderHome({ product }: Props) {
     const { data, setData, processing, errors, submit } = useForm({
         name: '',
@@ -99,7 +108,7 @@ export default function OrderHome({ product }: Props) {
                                 />
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="name">Name</Label>
+                                    <RequiredLabel htmlFor="name">Name</RequiredLabel>
                                     <Input
                                         id="name"
                                         name="name"
@@ -109,12 +118,13 @@ export default function OrderHome({ product }: Props) {
                                         autoFocus
                                         value={data.name}
                                         onChange={(e) => setData('name', e.target.value)}
+                                        aria-invalid={!!errors.name}
                                     />
                                     <InputError message={errors.name} />
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="phone_number">Phone no</Label>
+                                    <RequiredLabel htmlFor="phone_number">Phone no</RequiredLabel>
                                     <Input
                                         id="phone_number"
                                         name="phone_number"
@@ -124,12 +134,13 @@ export default function OrderHome({ product }: Props) {
                                         autoComplete="tel"
                                         value={data.phone_number}
                                         onChange={(e) => setData('phone_number', e.target.value)}
+                                        aria-invalid={!!errors.phone_number}
                                     />
                                     <InputError message={errors.phone_number} />
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="city">City</Label>
+                                    <RequiredLabel htmlFor="city">City</RequiredLabel>
                                     <Input
                                         id="city"
                                         name="city"
@@ -138,12 +149,13 @@ export default function OrderHome({ product }: Props) {
                                         autoComplete="address-level2"
                                         value={data.city}
                                         onChange={(e) => setData('city', e.target.value)}
+                                        aria-invalid={!!errors.city}
                                     />
                                     <InputError message={errors.city} />
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="delivery_address">Delivery address</Label>
+                                    <RequiredLabel htmlFor="delivery_address">Delivery address</RequiredLabel>
                                     <Textarea
                                         id="delivery_address"
                                         name="delivery_address"
@@ -151,12 +163,13 @@ export default function OrderHome({ product }: Props) {
                                         required
                                         value={data.delivery_address}
                                         onChange={(e) => setData('delivery_address', e.target.value)}
+                                        aria-invalid={!!errors.delivery_address}
                                     />
                                     <InputError message={errors.delivery_address} />
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="quantity">Quantity</Label>
+                                    <RequiredLabel htmlFor="quantity">Quantity</RequiredLabel>
                                     <Input
                                         id="quantity"
                                         name="quantity"
@@ -168,6 +181,7 @@ export default function OrderHome({ product }: Props) {
                                         onChange={(e) =>
                                             setData('quantity', Math.max(1, parseInt(e.target.value) || 1))
                                         }
+                                        aria-invalid={!!errors.quantity}
                                     />
                                     <InputError message={errors.quantity} />
                                 </div>
